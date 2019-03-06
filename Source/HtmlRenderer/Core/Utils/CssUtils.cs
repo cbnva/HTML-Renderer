@@ -96,15 +96,15 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
                     return cssBox.BorderSpacing;
                 case "border-collapse":
                     return cssBox.BorderCollapse;
-                case "corner-radius":
+                case "border-radius":
                     return cssBox.CornerRadius;
-                case "corner-nw-radius":
+                case "border-top-left-radius":
                     return cssBox.CornerNwRadius;
-                case "corner-ne-radius":
+                case "border-top-right-radius":
                     return cssBox.CornerNeRadius;
-                case "corner-se-radius":
+                case "border-bottom-right-radius":
                     return cssBox.CornerSeRadius;
-                case "corner-sw-radius":
+                case "border-bottom-left-radius":
                     return cssBox.CornerSwRadius;
                 case "margin-bottom":
                     return cssBox.MarginBottom;
@@ -255,19 +255,19 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
                 case "border-collapse":
                     cssBox.BorderCollapse = value;
                     break;
-                case "corner-radius":
+                case "border-radius":
                     cssBox.CornerRadius = value;
                     break;
-                case "corner-nw-radius":
+                case "border-top-left-radius":
                     cssBox.CornerNwRadius = value;
                     break;
-                case "corner-ne-radius":
+                case "border-top-right-radius":
                     cssBox.CornerNeRadius = value;
                     break;
-                case "corner-se-radius":
+                case "border-bottom-right-radius":
                     cssBox.CornerSeRadius = value;
                     break;
-                case "corner-sw-radius":
+                case "border-bottom-left-radius":
                     cssBox.CornerSwRadius = value;
                     break;
                 case "margin-bottom":
