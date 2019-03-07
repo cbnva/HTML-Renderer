@@ -141,7 +141,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         public bool IsBrElement
         {
-            get {
+            get
+            {
                 return _htmltag != null && _htmltag.Name.Equals("br", StringComparison.InvariantCultureIgnoreCase);
             }
         }
@@ -1311,13 +1312,14 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                     brush = g.GetSolidBrush(ActualBackgroundColor);
                 }
 
+                RGraphicsPath roundrect = null;
                 if (brush != null)
                 {
                     // TODO:a handle it correctly (tables background)
                     // if (isLast)
                     //  rectangle.Width -= ActualWordSpacing + CssUtils.GetWordEndWhitespace(ActualFont);
 
-                    RGraphicsPath roundrect = null;
+
                     if (IsRounded)
                     {
                         roundrect = RenderUtils.GetRoundRect(g, rect, ActualCornerNw, ActualCornerNe, ActualCornerSe, ActualCornerSw);
@@ -1340,15 +1342,16 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
 
                     g.ReturnPreviousSmoothingMode(prevMode);
 
-                    if (roundrect != null)
-                        roundrect.Dispose();
+
                     brush.Dispose();
                 }
 
                 if (_imageLoadHandler != null && _imageLoadHandler.Image != null && isFirst)
                 {
-                    BackgroundImageDrawHandler.DrawBackgroundImage(g, this, _imageLoadHandler, rect);
+                    BackgroundImageDrawHandler.DrawBackgroundImage(g, this, _imageLoadHandler, rect, roundrect);
                 }
+                if (roundrect != null)
+                    roundrect.Dispose();
             }
         }
 
