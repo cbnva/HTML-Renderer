@@ -51,24 +51,43 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
             lRectangle.Intersect(g.GetClip());
             g.PushClip(lRectangle);
 
+
+
+            //rectangle - box to draw in
+            //imgSize - image size
+            //localion - inital location of image wo repeat
+            //destRect - RRect(location, imgSize)
+            //srcRect (0,0,imgSize)
+
+            //brushRect - This is rectangle which needs to be filled with Image from brushRect.Location with brushRect.Size multiple to Image size.  
+            RRect brushRect = new RRect(location, imgSize);
+
             switch (box.BackgroundRepeat)
             {
                 case "no-repeat":
-                    if (roundrect == null)
-                        g.DrawImage(imageLoadHandler.Image, destRect, srcRect);
-                    else
-                        using (var brush = g.GetTextureBrush(imageLoadHandler.Image, srcRect, destRect.Location))
-                            g.DrawPath(brush, roundrect);
+                    //brushRect = destRect;
                     break;
                 case "repeat-x":
-                    DrawRepeatX(g, imageLoadHandler, rectangle, srcRect, destRect, imgSize, roundrect);
+                    if (brushRect.X > rectangle.X) brushRect.X -= imgSize.Width * ((int)((brushRect.X - rectangle.X) / imgSize.Width) + 1);
+                    if (brushRect.X + brushRect.Width < rectangle.X + rectangle.Width) brushRect.Width = imgSize.Width * ((int)((rectangle.X + rectangle.Width - brushRect.X) / imgSize.Width) + 1);
                     break;
                 case "repeat-y":
-                    DrawRepeatY(g, imageLoadHandler, rectangle, srcRect, destRect, imgSize, roundrect);
+                    if (brushRect.Y > rectangle.Y) brushRect.Y -= imgSize.Height * ((int)((brushRect.Y - rectangle.Y) / imgSize.Height) + 1);
+                    if (brushRect.Y + brushRect.Height < rectangle.Y + rectangle.Height) brushRect.Height = imgSize.Height * ((int)((rectangle.Y + rectangle.Height - brushRect.Y) / imgSize.Height) + 1);
                     break;
                 default:
-                    DrawRepeat(g, imageLoadHandler, rectangle, srcRect, destRect, imgSize, roundrect);
+                    if (brushRect.X > rectangle.X) brushRect.X -= imgSize.Width * ((int)((brushRect.X - rectangle.X) / imgSize.Width) + 1);
+                    if (brushRect.X + brushRect.Width < rectangle.X + rectangle.Width) brushRect.Width = imgSize.Width * ((int)((rectangle.X + rectangle.Width - brushRect.X) / imgSize.Width) + 1);
+                    if (brushRect.Y > rectangle.Y) brushRect.Y -= imgSize.Height * ((int)((brushRect.Y - rectangle.Y) / imgSize.Height) + 1);
+                    if (brushRect.Y + brushRect.Height < rectangle.Y + rectangle.Height) brushRect.Height = imgSize.Height * ((int)((rectangle.Y + rectangle.Height - brushRect.Y) / imgSize.Height) + 1);
                     break;
+            }
+            using (var brush = g.GetTextureBrush(imageLoadHandler.Image, brushRect, brushRect.Location))
+            {
+                if (roundrect == null)
+                    g.DrawRectangle(brush, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                else
+                    g.DrawPath(brush, roundrect);
             }
 
             g.PopClip();
@@ -89,7 +108,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
             double left = rectangle.Left;
             if (backgroundPosition.IndexOf("left", StringComparison.OrdinalIgnoreCase) > -1)
             {
-                left = (rectangle.Left + .5f);
+                left = (rectangle.Left);
             }
             else if (backgroundPosition.IndexOf("right", StringComparison.OrdinalIgnoreCase) > -1)
             {
@@ -97,7 +116,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
             }
             else if (backgroundPosition.IndexOf("0", StringComparison.OrdinalIgnoreCase) < 0)
             {
-                left = (rectangle.Left + (rectangle.Width - imgSize.Width) / 2 + .5f);
+                left = (rectangle.Left + (rectangle.Width - imgSize.Width) / 2);
             }
 
             double top = rectangle.Top;
@@ -111,66 +130,10 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
             }
             else if (backgroundPosition.IndexOf("0", StringComparison.OrdinalIgnoreCase) < 0)
             {
-                top = (rectangle.Top + (rectangle.Height - imgSize.Height) / 2 + .5f);
+                top = (rectangle.Top + (rectangle.Height - imgSize.Height) / 2);
             }
 
             return new RPoint(left, top);
-        }
-
-        /// <summary>
-        /// Draw the background image at the required location repeating it over the X axis.<br/>
-        /// Adjust location to left if starting location doesn't include all the range (adjusted to center or right).
-        /// </summary>
-        private static void DrawRepeatX(RGraphics g, ImageLoadHandler imageLoadHandler, RRect rectangle, RRect srcRect, RRect destRect, RSize imgSize, RGraphicsPath roundrect = null)
-        {
-            while (destRect.X > rectangle.X)
-                destRect.X -= imgSize.Width;
-
-            using (var brush = g.GetTextureBrush(imageLoadHandler.Image, srcRect, destRect.Location))
-            {
-                if (roundrect == null)
-                    g.DrawRectangle(brush, rectangle.X, destRect.Y, rectangle.Width, srcRect.Height);
-                else
-                    g.DrawPath(brush, roundrect);
-            }
-        }
-
-        /// <summary>
-        /// Draw the background image at the required location repeating it over the Y axis.<br/>
-        /// Adjust location to top if starting location doesn't include all the range (adjusted to center or bottom).
-        /// </summary>
-        private static void DrawRepeatY(RGraphics g, ImageLoadHandler imageLoadHandler, RRect rectangle, RRect srcRect, RRect destRect, RSize imgSize, RGraphicsPath roundrect = null)
-        {
-            while (destRect.Y > rectangle.Y)
-                destRect.Y -= imgSize.Height;
-
-            using (var brush = g.GetTextureBrush(imageLoadHandler.Image, srcRect, destRect.Location))
-            {
-                if (roundrect == null)
-                    g.DrawRectangle(brush, destRect.X, rectangle.Y, srcRect.Width, rectangle.Height);
-                else
-                    g.DrawPath(brush, roundrect);
-            }
-        }
-
-        /// <summary>
-        /// Draw the background image at the required location repeating it over the X and Y axis.<br/>
-        /// Adjust location to left-top if starting location doesn't include all the range (adjusted to center or bottom/right).
-        /// </summary>
-        private static void DrawRepeat(RGraphics g, ImageLoadHandler imageLoadHandler, RRect rectangle, RRect srcRect, RRect destRect, RSize imgSize, RGraphicsPath roundrect = null)
-        {
-            while (destRect.X > rectangle.X)
-                destRect.X -= imgSize.Width;
-            while (destRect.Y > rectangle.Y)
-                destRect.Y -= imgSize.Height;
-
-            using (var brush = g.GetTextureBrush(imageLoadHandler.Image, srcRect, destRect.Location))
-            {
-                if (roundrect == null)
-                    g.DrawRectangle(brush, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
-                else
-                    g.DrawPath(brush, roundrect);
-            }
         }
 
         #endregion
