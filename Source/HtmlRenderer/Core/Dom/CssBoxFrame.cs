@@ -26,7 +26,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// CSS box for iframe element.<br/>
     /// If the iframe is of embedded YouTube or Vimeo video it will show image with play.
     /// </summary>
-    internal sealed class CssBoxFrame : CssBox
+    public sealed class CssBoxFrame : CssBox
     {
         #region Fields and Consts
 
@@ -545,7 +545,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                     new RPoint(left + 2 * size.Width / 3f + 1, top + size.Height / 2f)
                 };
                 g.DrawPolygon(g.GetSolidBrush(RColor.White), points);
-                
+
                 g.ReturnPreviousSmoothingMode(prevMode);
             }
         }
@@ -554,7 +554,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// Assigns words its width and height
         /// </summary>
         /// <param name="g">the device to use</param>
-        internal override void MeasureWordsSize(RGraphics g)
+        public override void MeasureWordsSize(RGraphics g)
         {
             if (!_wordsSizeMeasured)
             {

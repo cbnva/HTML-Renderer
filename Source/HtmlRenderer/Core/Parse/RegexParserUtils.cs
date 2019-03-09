@@ -18,7 +18,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Parse
     /// <summary>
     /// Collection of regular expressions used when parsing
     /// </summary>
-    internal static class RegexParserUtils
+    public static class RegexParserUtils
     {
         #region Fields and Consts
 

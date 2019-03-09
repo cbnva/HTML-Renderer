@@ -58,7 +58,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Entities
         /// </summary>
         /// <param name="src">the source of the image (file path or URL)</param>
         /// <param name="attributes">collection of all the attributes that are defined on the image element</param>
-        internal HtmlStylesheetLoadEventArgs(string src, Dictionary<string, string> attributes)
+        public HtmlStylesheetLoadEventArgs(string src, Dictionary<string, string> attributes)
         {
             _src = src;
             _attributes = attributes;

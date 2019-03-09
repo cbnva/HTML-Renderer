@@ -15,7 +15,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// Border types
     /// </summary>
-    internal enum Border
+    public enum Border
     {
         Top,
         Right,

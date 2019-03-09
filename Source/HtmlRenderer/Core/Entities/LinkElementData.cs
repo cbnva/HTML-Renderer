@@ -14,7 +14,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Entities
 {
     /// <summary>
     /// Holds data on link element in HTML.<br/>
-    /// Used to expose data outside of HTML Renderer internal structure.
+    /// Used to expose data outside of HTML Renderer public structure.
     /// </summary>
     public sealed class LinkElementData<T>
     {

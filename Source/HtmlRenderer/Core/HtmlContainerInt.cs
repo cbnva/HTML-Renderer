@@ -216,7 +216,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// 
         /// </summary>
-        internal RAdapter Adapter
+        public RAdapter Adapter
         {
             get { return _adapter; }
         }
@@ -224,7 +224,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// parser for CSS data
         /// </summary>
-        internal CssParser CssParser
+        public CssParser CssParser
         {
             get { return _cssParser; }
         }
@@ -476,7 +476,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// the root css box of the parsed html
         /// </summary>
-        internal CssBox Root
+        public CssBox Root
         {
             get { return _root; }
         }
@@ -484,7 +484,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// the text fore color use for selected text
         /// </summary>
-        internal RColor SelectionForeColor
+        public RColor SelectionForeColor
         {
             get { return _selectionForeColor; }
             set { _selectionForeColor = value; }
@@ -493,7 +493,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// the back-color to use for selected text
         /// </summary>
-        internal RColor SelectionBackColor
+        public RColor SelectionBackColor
         {
             get { return _selectionBackColor; }
             set { _selectionBackColor = value; }
@@ -857,7 +857,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// Raise the stylesheet load event with the given event args.
         /// </summary>
         /// <param name="args">the event args</param>
-        internal void RaiseHtmlStylesheetLoadEvent(HtmlStylesheetLoadEventArgs args)
+        public void RaiseHtmlStylesheetLoadEvent(HtmlStylesheetLoadEventArgs args)
         {
             try
             {
@@ -875,7 +875,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// Raise the image load event with the given event args.
         /// </summary>
         /// <param name="args">the event args</param>
-        internal void RaiseHtmlImageLoadEvent(HtmlImageLoadEventArgs args)
+        public void RaiseHtmlImageLoadEvent(HtmlImageLoadEventArgs args)
         {
             try
             {
@@ -913,7 +913,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <param name="type">the type of error to report</param>
         /// <param name="message">the error message</param>
         /// <param name="exception">optional: the exception that occured</param>
-        internal void ReportError(HtmlRenderErrorType type, string message, Exception exception = null)
+        public void ReportError(HtmlRenderErrorType type, string message, Exception exception = null)
         {
             try
             {
@@ -931,7 +931,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <param name="parent">the control hosting the html to invalidate</param>
         /// <param name="location">the location of the mouse</param>
         /// <param name="link">the link that was clicked</param>
-        internal void HandleLinkClicked(RControl parent, RPoint location, CssBox link)
+        public void HandleLinkClicked(RControl parent, RPoint location, CssBox link)
         {
             EventHandler<HtmlLinkClickedEventArgs> clickHandler = LinkClicked;
             if (clickHandler != null)
@@ -978,7 +978,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// </summary>
         /// <param name="box">the box that has the hover selector</param>
         /// <param name="block">the css block with the css data with the selector</param>
-        internal void AddHoverBox(CssBox box, CssBlock block)
+        public void AddHoverBox(CssBox box, CssBlock block)
         {
             ArgChecker.AssertArgNotNull(box, "box");
             ArgChecker.AssertArgNotNull(block, "block");
@@ -993,7 +993,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// Get image downloader to be used to download images for the current html rendering.<br/>
         /// Lazy create single downloader to be used for all images in the current html.
         /// </summary>
-        internal ImageDownloader GetImageDownloader()
+        public ImageDownloader GetImageDownloader()
         {
             return _imageDownloader;
         }

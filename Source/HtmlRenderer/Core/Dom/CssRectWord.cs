@@ -15,7 +15,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// Represents a word inside an inline box
     /// </summary>
-    internal sealed class CssRectWord : CssRect
+    public sealed class CssRectWord : CssRect
     {
         #region Fields and Consts
 

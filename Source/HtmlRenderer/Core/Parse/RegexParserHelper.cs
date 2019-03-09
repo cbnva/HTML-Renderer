@@ -18,7 +18,7 @@ namespace HtmlRenderer.Parse
     /// <summary>
     /// Collection of regular expressions used when parsing
     /// </summary>
-    internal static class RegexParserHelper
+    public static class RegexParserHelper
     {
         #region Fields and Consts
 

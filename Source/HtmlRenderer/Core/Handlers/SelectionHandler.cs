@@ -22,7 +22,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// <summary>
     /// Handler for text selection in the html.
     /// </summary>
-    internal sealed class SelectionHandler : IDisposable
+    public sealed class SelectionHandler : IDisposable
     {
         #region Fields and Consts
 

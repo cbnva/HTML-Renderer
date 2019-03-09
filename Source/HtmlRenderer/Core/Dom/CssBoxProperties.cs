@@ -27,7 +27,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// Has additional fields to control the location and size of the box and 'actual' css values for some properties
     /// that require additional calculations and parsing.<br/>
     /// </summary>
-    internal abstract class CssBoxProperties
+    public abstract class CssBoxProperties
     {
         #region CSS Fields
 
@@ -426,7 +426,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         public string Top
         {
             get { return _top; }
-            set {
+            set
+            {
                 _top = value;
 
                 if (Position == CssConstants.Fixed)
@@ -686,7 +687,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         public RPoint Location
         {
-            get {
+            get
+            {
                 if (_location.IsEmpty && Position == CssConstants.Fixed)
                 {
                     var left = Left;
@@ -696,7 +698,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 }
                 return _location;
             }
-            set {
+            set
+            {
                 _location = value;
             }
         }

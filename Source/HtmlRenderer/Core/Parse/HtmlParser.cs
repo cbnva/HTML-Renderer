@@ -20,7 +20,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Parse
     /// <summary>
     /// 
     /// </summary>
-    internal static class HtmlParser
+    public static class HtmlParser
     {
         /// <summary>
         /// Parses the source html to css boxes tree structure.

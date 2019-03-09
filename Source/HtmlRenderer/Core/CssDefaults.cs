@@ -12,7 +12,7 @@
 
 namespace TheArtOfDev.HtmlRenderer.Core
 {
-    internal static class CssDefaults
+    public static class CssDefaults
     {
         /// <summary>
         /// CSS Specification's Default Style Sheet for HTML 4

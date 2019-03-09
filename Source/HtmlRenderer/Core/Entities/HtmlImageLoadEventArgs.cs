@@ -70,7 +70,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Entities
         /// <param name="src">the source of the image (file path or Uri)</param>
         /// <param name="attributes">collection of all the attributes that are defined on the image element</param>
         /// <param name="callback">Callback used to allow setting image externally and async.</param>
-        internal HtmlImageLoadEventArgs(string src, Dictionary<string, string> attributes, HtmlImageLoadCallback callback)
+        public HtmlImageLoadEventArgs(string src, Dictionary<string, string> attributes, HtmlImageLoadCallback callback)
         {
             _src = src;
             _attributes = attributes;

@@ -46,7 +46,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// Init.
         /// </summary>
-        internal CssData()
+        public CssData()
         {
             _mediaBlocks.Add("all", new Dictionary<string, List<CssBlock>>(StringComparer.InvariantCultureIgnoreCase));
         }
@@ -70,7 +70,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <summary>
         /// dictionary of media type to dictionary of css class name to the cssBlocks collection with all the data
         /// </summary>
-        internal IDictionary<string, Dictionary<string, List<CssBlock>>> MediaBlocks
+        public IDictionary<string, Dictionary<string, List<CssBlock>>> MediaBlocks
         {
             get { return _mediaBlocks; }
         }

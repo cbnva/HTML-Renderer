@@ -23,7 +23,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// <summary>
     /// Handle context menu.
     /// </summary>
-    internal sealed class ContextMenuHandler : IDisposable
+    public sealed class ContextMenuHandler : IDisposable
     {
         #region Fields and Consts
 

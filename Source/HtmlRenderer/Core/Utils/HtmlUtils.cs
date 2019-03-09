@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace TheArtOfDev.HtmlRenderer.Core.Utils
 {
-    internal static class HtmlUtils
+    public static class HtmlUtils
     {
         #region Fields and Consts
 
@@ -373,7 +373,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
                 string repl = string.Empty;
                 if (num >= 0 && num <= 0x10ffff && !(num >= 0xd800 && num <= 0xdfff))
                     repl = Char.ConvertFromUtf32((int)num);
-                
+
                 str = str.Remove(idx, endIdx - idx);
                 str = str.Insert(idx, repl);
 

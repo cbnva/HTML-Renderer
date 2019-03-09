@@ -21,7 +21,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// <summary>
     /// Utilities for fonts and fonts families handling.
     /// </summary>
-    internal sealed class FontsHandler
+    public sealed class FontsHandler
     {
         #region Fields and Consts
 

@@ -24,7 +24,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Parse
     /// <summary>
     /// Parser to parse CSS stylesheet source string into CSS objects.
     /// </summary>
-    internal sealed class CssParser
+    public sealed class CssParser
     {
         #region Fields and Consts
 

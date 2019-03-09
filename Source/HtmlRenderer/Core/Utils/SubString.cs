@@ -17,7 +17,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
     /// <summary>
     /// Represents sub-string of a full string starting at specific location with a specific length.
     /// </summary>
-    internal sealed class SubString
+    public sealed class SubString
     {
         #region Fields and Consts
 
