@@ -636,8 +636,10 @@ namespace TheArtOfDev.HtmlRenderer.Core
             if (_root != null)
             {
                 // if width is not restricted we set it to large value to get the actual later
-                _root.Size = new RSize(_maxSize.Width > 0 ? _maxSize.Width : 99999, 0);
+                _root.Size = new RSize(_maxSize.Width > 0 ? _maxSize.Width : 99999, _maxSize.Height);
                 _root.Location = _location;
+                _root.Height = "100%";
+                _root.Width = "100%";
                 _root.PerformLayout(g);
 
                 if (_maxSize.Width <= 0.1)

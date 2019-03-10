@@ -619,24 +619,37 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 MeasureWordsSize(g);
             }
 
+            double width = ContainingBlock.Size.Width
+                                              - ContainingBlock.ActualPaddingLeft - ContainingBlock.ActualPaddingRight
+                                              - ContainingBlock.ActualBorderLeftWidth - ContainingBlock.ActualBorderRightWidth;
+            double height = ContainingBlock.Size.Height
+                                             - ContainingBlock.ActualPaddingTop - ContainingBlock.ActualPaddingBottom
+                                             - ContainingBlock.ActualBorderTopWidth - ContainingBlock.ActualBorderBottomWidth;
+
+            bool manual_width = false;
+            bool manual_height = false;
+            if (Width != CssConstants.Auto && !string.IsNullOrEmpty(Width))
+            {
+                width = CssValueParser.ParseLength(Width, width, this);
+                manual_width = width > 0 ? true : false;
+            }
+            if (Height != CssConstants.Auto && !string.IsNullOrEmpty(Height))
+            {
+                height = CssValueParser.ParseLength(Height, height, this);
+                manual_height = height > 0 ? true : false;
+            }
+
+
             if (IsBlock || Display == CssConstants.ListItem || Display == CssConstants.Table || Display == CssConstants.InlineTable || Display == CssConstants.TableCell)
             {
                 // Because their width and height are set by CssTable
                 if (Display != CssConstants.TableCell && Display != CssConstants.Table)
                 {
-                    double width = ContainingBlock.Size.Width
-                                   - ContainingBlock.ActualPaddingLeft - ContainingBlock.ActualPaddingRight
-                                   - ContainingBlock.ActualBorderLeftWidth - ContainingBlock.ActualBorderRightWidth;
-
-                    if (Width != CssConstants.Auto && !string.IsNullOrEmpty(Width))
-                    {
-                        width = CssValueParser.ParseLength(Width, width, this);
-                    }
-
-                    Size = new RSize(width, Size.Height);
-
+                    Size = new RSize(width, height);
                     // must be separate because the margin can be calculated by percentage of the width
-                    Size = new RSize(width - ActualMarginLeft - ActualMarginRight, Size.Height);
+                    if (!manual_width) width = width - ActualMarginLeft - ActualMarginRight;
+                    if (!manual_height) height = height - ActualMarginTop - ActualMarginBottom;
+                    Size = new RSize(width, height);
                 }
 
                 if (Display != CssConstants.TableCell)
@@ -662,6 +675,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 //If we're talking about a table here..
                 if (Display == CssConstants.Table || Display == CssConstants.InlineTable)
                 {
+                    //Size = new RSize(width, height);
                     CssLayoutEngineTable.PerformLayout(g, this);
                 }
                 else
@@ -674,12 +688,13 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                     }
                     else if (_boxes.Count > 0)
                     {
+                        Size = new RSize(width, manual_height ? height : 0);
                         foreach (var childBox in Boxes)
                         {
                             childBox.PerformLayout(g);
                         }
-                        ActualRight = CalculateActualRight();
-                        ActualBottom = MarginBottomCollapse();
+                        ActualRight = manual_width ? width + Location.X : CalculateActualRight();
+                        ActualBottom = manual_height ? height + Location.Y : MarginBottomCollapse();
                     }
                 }
             }
@@ -690,10 +705,10 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 {
                     if (Location == RPoint.Empty)
                         Location = prevSibling.Location;
-                    ActualBottom = prevSibling.ActualBottom;
+                    if (!manual_height) ActualBottom = prevSibling.ActualBottom;
                 }
             }
-            ActualBottom = Math.Max(ActualBottom, Location.Y + ActualHeight);
+            if (!manual_height) ActualBottom = Math.Max(ActualBottom, Location.Y + ActualHeight);
 
             CreateListItemBox(g);
 
@@ -702,6 +717,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 var actualWidth = Math.Max(GetMinimumWidth() + GetWidthMarginDeep(this), Size.Width < 90999 ? ActualRight - HtmlContainer.Root.Location.X : 0);
                 HtmlContainer.ActualSize = CommonUtils.Max(HtmlContainer.ActualSize, new RSize(actualWidth, ActualBottom - HtmlContainer.Root.Location.Y));
             }
+
         }
 
         /// <summary>
