@@ -97,6 +97,11 @@ namespace TheArtOfDev.HtmlRenderer.Core
         private CssBox _root;
 
         /// <summary>
+        /// DOM Document wrapper 
+        /// </summary>
+        private DOMDocument _document;
+
+        /// <summary>
         /// list of all css boxes that have ":hover" selector on them
         /// </summary>
         private List<HoverBoxBlock> _hoverBoxes;
@@ -227,6 +232,15 @@ namespace TheArtOfDev.HtmlRenderer.Core
         internal CssParser CssParser
         {
             get { return _cssParser; }
+        }
+
+
+        /// <summary>
+        /// DOM Document wrapper
+        /// </summary>
+        public DOMDocument document
+        {
+            get { return _document; }
         }
 
         /// <summary>
@@ -514,8 +528,10 @@ namespace TheArtOfDev.HtmlRenderer.Core
 
                 DomParser parser = new DomParser(_cssParser);
                 _root = parser.GenerateCssTree(htmlSource, this, ref _cssData);
+
                 if (_root != null)
                 {
+                    _document = new DOMDocument(_root);
                     _selectionHandler = new SelectionHandler(_root);
                     _imageDownloader = new ImageDownloader();
                 }
