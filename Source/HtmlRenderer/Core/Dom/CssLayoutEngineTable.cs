@@ -23,7 +23,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// Layout engine for tables executing the complex layout of tables with rows/columns/headers/etc.
     /// </summary>
-    public sealed class CssLayoutEngineTable
+    internal sealed class CssLayoutEngineTable
     {
         #region Fields and Consts
 

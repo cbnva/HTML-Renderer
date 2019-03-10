@@ -21,7 +21,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
     /// <summary>
     /// Utility method for handling CSS stuff.
     /// </summary>
-    public static class CssUtils
+    internal static class CssUtils
     {
         #region Fields and Consts
 

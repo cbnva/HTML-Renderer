@@ -21,7 +21,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// <summary>
     /// Contains all the complex paint code to paint different style borders.
     /// </summary>
-    public static class BordersDrawHandler
+    internal static class BordersDrawHandler
     {
         #region Fields and Consts
 

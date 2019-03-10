@@ -17,7 +17,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// CSS boxes that have ":hover" selector on them.
     /// </summary>
-    public sealed class HoverBoxBlock
+    internal sealed class HoverBoxBlock
     {
         /// <summary>
         /// the box that has :hover css on

@@ -20,7 +20,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// <summary>
     /// Contains all the paint code to paint different background images.
     /// </summary>
-    public static class BackgroundImageDrawHandler
+    internal static class BackgroundImageDrawHandler
     {
         /// <summary>
         /// Draw the background image of the given box in the given rectangle.<br/>

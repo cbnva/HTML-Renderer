@@ -23,7 +23,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Parse
     /// <summary>
     /// Handle css DOM tree generation from raw html and stylesheet.
     /// </summary>
-    public sealed class DomParser
+    internal sealed class DomParser
     {
         #region Fields and Consts
 

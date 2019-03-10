@@ -40,7 +40,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// Disposing image load handler will also cancel download of image from the web.
     /// </para>
     /// </remarks>
-    public sealed class ImageLoadHandler : IDisposable
+    internal sealed class ImageLoadHandler : IDisposable
     {
         #region Fields and Consts
 

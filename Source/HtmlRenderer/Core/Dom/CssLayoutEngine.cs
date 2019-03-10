@@ -21,7 +21,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// Helps on CSS Layout.
     /// </summary>
-    public static class CssLayoutEngine
+    internal static class CssLayoutEngine
     {
         /// <summary>
         /// Measure image box size by the width\height set on the box and the actual rendered image size.<br/>

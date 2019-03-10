@@ -11,7 +11,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <remarks>
     /// http://www.w3.org/TR/CSS21/syndata.html#length-units
     /// </remarks>
-    public sealed class CssLength
+    internal sealed class CssLength
     {
         #region Fields
 

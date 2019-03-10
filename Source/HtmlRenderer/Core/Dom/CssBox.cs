@@ -32,7 +32,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// To know more about boxes visit CSS spec:
     /// http://www.w3.org/TR/CSS21/box.html
     /// </remarks>
-    public class CssBox : CssBoxProperties, IDisposable
+    internal class CssBox : CssBoxProperties, IDisposable
     {
         #region Fields and Consts
 
@@ -68,7 +68,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <remarks>
         /// Flag that indicates that CssTable algorithm already made fixes on it.
         /// </remarks>
-        public bool _tableFixed;
+        internal bool _tableFixed;
 
         protected bool _wordsSizeMeasured;
         private CssBox _listItemBox;
@@ -292,7 +292,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets the line-boxes of this box (if block box)
         /// </summary>
-        public List<CssLineBox> LineBoxes
+        internal List<CssLineBox> LineBoxes
         {
             get { return _lineBoxes; }
         }
@@ -300,7 +300,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets the linebox(es) that contains words of this box (if inline)
         /// </summary>
-        public List<CssLineBox> ParentLineBoxes
+        internal List<CssLineBox> ParentLineBoxes
         {
             get { return _parentLineBoxes; }
         }
@@ -308,7 +308,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets the rectangles where this box should be painted
         /// </summary>
-        public Dictionary<CssLineBox, RRect> Rectangles
+        internal Dictionary<CssLineBox, RRect> Rectangles
         {
             get { return _rectangles; }
         }
@@ -316,7 +316,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets the BoxWords of text in the box
         /// </summary>
-        public List<CssRect> Words
+        internal List<CssRect> Words
         {
             get { return _boxWords; }
         }
@@ -324,7 +324,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets the first word of the box
         /// </summary>
-        public CssRect FirstWord
+        internal CssRect FirstWord
         {
             get { return Words[0]; }
         }
@@ -332,7 +332,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets or sets the first linebox where content of this box appear
         /// </summary>
-        public CssLineBox FirstHostingLineBox
+        internal CssLineBox FirstHostingLineBox
         {
             get { return _firstHostingLineBox; }
             set { _firstHostingLineBox = value; }
@@ -341,7 +341,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets or sets the last linebox where content of this box appear
         /// </summary>
-        public CssLineBox LastHostingLineBox
+        internal CssLineBox LastHostingLineBox
         {
             get { return _lastHostingLineBox; }
             set { _lastHostingLineBox = value; }
@@ -708,7 +708,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// Assigns words its width and height
         /// </summary>
         /// <param name="g"></param>
-        public virtual void MeasureWordsSize(RGraphics g)
+        internal virtual void MeasureWordsSize(RGraphics g)
         {
             if (!_wordsSizeMeasured)
             {
@@ -835,7 +835,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <param name="b"></param>
         /// <param name="line"> </param>
         /// <returns></returns>
-        public CssRect FirstWordOccourence(CssBox b, CssLineBox line)
+        internal CssRect FirstWordOccourence(CssBox b, CssLineBox line)
         {
             if (b.Words.Count == 0 && b.Boxes.Count == 0)
             {
@@ -874,7 +874,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         /// <param name="attribute">Attribute to retrieve</param>
         /// <returns>Attribute value or string.Empty if no attribute specified</returns>
-        public string GetAttribute(string attribute)
+        internal string GetAttribute(string attribute)
         {
             return GetAttribute(attribute, string.Empty);
         }
@@ -885,7 +885,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <param name="attribute">Attribute to retrieve</param>
         /// <param name="defaultValue">Value to return if attribute is not specified</param>
         /// <returns>Attribute value or defaultValue if no attribute specified</returns>
-        public string GetAttribute(string attribute, string defaultValue)
+        internal string GetAttribute(string attribute, string defaultValue)
         {
             return HtmlTag != null ? HtmlTag.TryGetAttribute(attribute, defaultValue) : defaultValue;
         }
@@ -896,7 +896,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// The check is deep thru box tree.<br/>
         /// </summary>
         /// <returns>the min width of the box</returns>
-        public double GetMinimumWidth()
+        internal double GetMinimumWidth()
         {
             double maxWidth = 0;
             CssRect maxWidthWord = null;
@@ -968,7 +968,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <param name="startBox"></param>
         /// <param name="currentMaxBottom"></param>
         /// <returns></returns>
-        public double GetMaximumBottom(CssBox startBox, double currentMaxBottom)
+        internal double GetMaximumBottom(CssBox startBox, double currentMaxBottom)
         {
             foreach (var line in startBox.Rectangles.Keys)
             {
@@ -988,7 +988,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         /// <param name="minWidth">The minimum width the content must be so it won't overflow (largest word + padding).</param>
         /// <param name="maxWidth">The total width the content can take without line wrapping (with padding).</param>
-        public void GetMinMaxWidth(out double minWidth, out double maxWidth)
+        internal void GetMinMaxWidth(out double minWidth, out double maxWidth)
         {
             double min = 0f;
             double maxSum = 0f;
@@ -1067,7 +1067,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// Gets if this box has only inline siblings (including itself)
         /// </summary>
         /// <returns></returns>
-        public bool HasJustInlineSiblings()
+        internal bool HasJustInlineSiblings()
         {
             return ParentBox != null && DomUtils.ContainsInlinesOnly(ParentBox);
         }
@@ -1083,7 +1083,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Inherits inheritable values from parent.
         /// </summary>
-        public new void InheritStyle(CssBox box = null, bool everything = false)
+        internal new void InheritStyle(CssBox box = null, bool everything = false)
         {
             base.InheritStyle(box ?? ParentBox, everything);
         }
@@ -1179,7 +1179,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// Deeply offsets the top of the box and its contents
         /// </summary>
         /// <param name="amount"></param>
-        public void OffsetTop(double amount)
+        internal void OffsetTop(double amount)
         {
             List<CssLineBox> lines = new List<CssLineBox>();
             foreach (CssLineBox line in Rectangles.Keys)
@@ -1460,7 +1460,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         /// <param name="lineBox"></param>
         /// <param name="gap"></param>
-        public void OffsetRectangle(CssLineBox lineBox, double gap)
+        internal void OffsetRectangle(CssLineBox lineBox, double gap)
         {
             if (Rectangles.ContainsKey(lineBox))
             {
@@ -1472,7 +1472,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Resets the <see cref="Rectangles"/> array
         /// </summary>
-        public void RectanglesReset()
+        internal void RectanglesReset()
         {
             _rectangles.Clear();
         }

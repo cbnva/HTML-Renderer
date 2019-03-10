@@ -36,7 +36,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// Also handles corrupt, partial and canceled downloads by first downloading to temp file and only if successful moving to cached 
     /// file location.
     /// </summary>
-    public sealed class ImageDownloader : IDisposable
+    internal sealed class ImageDownloader : IDisposable
     {
         /// <summary>
         /// the web client used to download image from URL (to cancel on dispose)

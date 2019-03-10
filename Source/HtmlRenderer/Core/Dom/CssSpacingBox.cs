@@ -7,7 +7,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// Used to make space on vertical cell combination
     /// </summary>
-    public sealed class CssSpacingBox : CssBox
+    internal sealed class CssSpacingBox : CssBox
     {
         #region Fields and Consts
 

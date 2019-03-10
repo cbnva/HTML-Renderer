@@ -22,7 +22,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
     /// <summary>
     /// Handler for loading a stylesheet data.
     /// </summary>
-    public static class StylesheetLoadHandler
+    internal static class StylesheetLoadHandler
     {
         /// <summary>
         /// Load stylesheet data from the given source.<br/>

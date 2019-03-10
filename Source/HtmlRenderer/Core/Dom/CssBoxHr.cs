@@ -21,7 +21,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// CSS box for hr element.
     /// </summary>
-    public sealed class CssBoxHr : CssBox
+    internal sealed class CssBoxHr : CssBox
     {
         /// <summary>
         /// Init.

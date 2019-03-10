@@ -15,7 +15,7 @@ using TheArtOfDev.HtmlRenderer.Core.Utils;
 
 namespace TheArtOfDev.HtmlRenderer.Core.Dom
 {
-    public sealed class HtmlTag
+    internal sealed class HtmlTag
     {
         #region Fields and Consts
 

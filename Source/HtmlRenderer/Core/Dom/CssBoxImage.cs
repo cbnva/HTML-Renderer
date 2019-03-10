@@ -21,7 +21,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <summary>
     /// CSS box for image element.
     /// </summary>
-    public sealed class CssBoxImage : CssBox
+    internal sealed class CssBoxImage : CssBox
     {
         #region Fields and Consts
 
@@ -135,7 +135,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// Assigns words its width and height
         /// </summary>
         /// <param name="g">the device to use</param>
-        public override void MeasureWordsSize(RGraphics g)
+        internal override void MeasureWordsSize(RGraphics g)
         {
             if (!_wordsSizeMeasured)
             {

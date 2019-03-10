@@ -18,7 +18,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// <remarks>
     /// http://www.w3.org/TR/CSS21/syndata.html#length-units
     /// </remarks>
-    public enum CssUnit
+    internal enum CssUnit
     {
         None,
         Ems,

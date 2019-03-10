@@ -24,7 +24,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// To learn more about line-boxes see CSS spec:
     /// http://www.w3.org/TR/CSS21/visuren.html
     /// </remarks>
-    public sealed class CssLineBox
+    internal sealed class CssLineBox
     {
         #region Fields and Consts
 
@@ -117,7 +117,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// Lets the linebox add the word an its box to their lists if necessary.
         /// </summary>
         /// <param name="word"></param>
-        public void ReportExistanceOf(CssRect word)
+        internal void ReportExistanceOf(CssRect word)
         {
             if (!Words.Contains(word))
             {
@@ -135,7 +135,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         /// <param name="box"></param>
         /// <returns></returns>
-        public List<CssRect> WordsOf(CssBox box)
+        internal List<CssRect> WordsOf(CssBox box)
         {
             List<CssRect> r = new List<CssRect>();
 
@@ -154,7 +154,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <param name="y"></param>
         /// <param name="r"></param>
         /// <param name="b"></param>
-        public void UpdateRectangle(CssBox box, double x, double y, double r, double b)
+        internal void UpdateRectangle(CssBox box, double x, double y, double r, double b)
         {
             double leftspacing = box.ActualBorderLeftWidth + box.ActualPaddingLeft;
             double rightspacing = box.ActualBorderRightWidth + box.ActualPaddingRight;
@@ -194,7 +194,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Copies the rectangles to their specified box
         /// </summary>
-        public void AssignRectanglesToBoxes()
+        internal void AssignRectanglesToBoxes()
         {
             foreach (CssBox b in Rectangles.Keys)
             {
@@ -208,7 +208,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <param name="g">Device info</param>
         /// <param name="b">box to check words</param>
         /// <param name="baseline">baseline</param>
-        public void SetBaseLine(RGraphics g, CssBox b, double baseline)
+        internal void SetBaseLine(RGraphics g, CssBox b, double baseline)
         {
             //TODO: Aqui me quede, checar poniendo "by the" con un font-size de 3em
             List<CssRect> ws = WordsOf(b);

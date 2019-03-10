@@ -22,7 +22,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Parse
     /// <summary>
     /// Parse CSS properties values like numbers, Urls, etc.
     /// </summary>
-    public sealed class CssValueParser
+    internal sealed class CssValueParser
     {
         #region Fields and Consts
 

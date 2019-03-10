@@ -3,7 +3,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
     /// <summary>
     /// Defines HTML strings
     /// </summary>
-    public static class HtmlConstants
+    internal static class HtmlConstants
     {
         public const string A = "a";
         //        public const string ABBR = "ABBR";

@@ -15,7 +15,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
     /// <summary>
     /// String constants to avoid typing errors.
     /// </summary>
-    public static class CssConstants
+    internal static class CssConstants
     {
         public const string Absolute = "absolute";
         public const string Auto = "auto";

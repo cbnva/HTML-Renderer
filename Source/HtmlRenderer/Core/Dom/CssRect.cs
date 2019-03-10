@@ -25,7 +25,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
     /// imagine the performance when drawing char by char on the device.<br/>
     /// It may change for future versions of the library.
     /// </remarks>
-    public abstract class CssRect
+    internal abstract class CssRect
     {
         #region Fields and Consts
 
@@ -255,7 +255,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// <summary>
         /// Gets or sets an offset to be considered in measurements
         /// </summary>
-        public double LeftGlyphPadding
+        internal double LeftGlyphPadding
         {
             get { return OwnerBox != null ? OwnerBox.ActualFont.LeftPadding : 0; }
         }
