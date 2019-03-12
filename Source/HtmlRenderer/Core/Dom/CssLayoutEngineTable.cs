@@ -64,6 +64,15 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
 
         private double[] _columnMinWidths;
 
+        private int _rowCount;
+
+        private bool _heightSpecified;
+
+        private double[] _rowHeights;
+
+        private double[] _rowMinHeights;
+
+
         #endregion
 
 
@@ -300,6 +309,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 foreach (CssBox b in _allRows)
                     _columnCount = Math.Max(_columnCount, b.Boxes.Count);
             }
+
+
 
             //Initialize column widths array with NaNs
             _columnWidths = new double[_columnCount];

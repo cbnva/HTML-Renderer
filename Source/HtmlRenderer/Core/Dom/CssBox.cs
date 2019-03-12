@@ -676,6 +676,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 if (Display == CssConstants.Table || Display == CssConstants.InlineTable)
                 {
                     //Size = new RSize(width, height);
+                    // if (manual_width) Size = new RSize(width, manual_height ? height : 0);
                     CssLayoutEngineTable.PerformLayout(g, this);
                 }
                 else
@@ -688,7 +689,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                     }
                     else if (_boxes.Count > 0)
                     {
-                        Size = new RSize(width, manual_height ? height : 0);
+                        if (Display != CssConstants.TableCell) Size = new RSize(width, manual_height ? height : 0);
                         foreach (var childBox in Boxes)
                         {
                             childBox.PerformLayout(g);

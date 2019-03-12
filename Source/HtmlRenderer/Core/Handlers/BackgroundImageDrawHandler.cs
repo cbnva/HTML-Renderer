@@ -14,7 +14,7 @@ using System;
 using TheArtOfDev.HtmlRenderer.Adapters;
 using TheArtOfDev.HtmlRenderer.Adapters.Entities;
 using TheArtOfDev.HtmlRenderer.Core.Dom;
-
+using TheArtOfDev.HtmlRenderer.Core.Parse;
 namespace TheArtOfDev.HtmlRenderer.Core.Handlers
 {
     /// <summary>
@@ -37,7 +37,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
                 imageLoadHandler.Rectangle == RRect.Empty ? imageLoadHandler.Image.Height : imageLoadHandler.Rectangle.Height);
 
             // get the location by BackgroundPosition value
-            var location = GetLocation(box.BackgroundPosition, rectangle, imgSize);
+            var location = GetLocation(box.BackgroundPosition, rectangle, imgSize, box);
 
             var srcRect = imageLoadHandler.Rectangle == RRect.Empty
                 ? new RRect(0, 0, imgSize.Width, imgSize.Height)
@@ -103,34 +103,51 @@ namespace TheArtOfDev.HtmlRenderer.Core.Handlers
         /// <param name="rectangle">the rectangle to position image in</param>
         /// <param name="imgSize">the size of the image</param>
         /// <returns>the top-left location</returns>
-        private static RPoint GetLocation(string backgroundPosition, RRect rectangle, RSize imgSize)
+        private static RPoint GetLocation(string backgroundPosition, RRect rectangle, RSize imgSize, CssBox box)
         {
+
             double left = rectangle.Left;
-            if (backgroundPosition.IndexOf("left", StringComparison.OrdinalIgnoreCase) > -1)
+            double top = rectangle.Top;
+
+            if (backgroundPosition.Trim().ToLower() == "inherit")
+                return new RPoint(left, top);
+
+            string[] bp = backgroundPosition.Trim().Split(' ');
+            string lr_str = "";
+            string tb_str = "";
+            foreach (var value in bp)
             {
-                left = (rectangle.Left);
+                var val = value.Trim();
+                if (val == "") continue;
+                if (lr_str == "")
+                {
+                    lr_str = val.ToLower();
+                    continue;
+                }
+                if (tb_str == "")
+                {
+                    tb_str = val.ToLower();
+                    continue;
+                }
+                //3d word found fallback to (0,0)
+                return new RPoint(left, top);
             }
-            else if (backgroundPosition.IndexOf("right", StringComparison.OrdinalIgnoreCase) > -1)
+            if (tb_str == "")
+                tb_str = lr_str;
+            switch (lr_str)
             {
-                left = rectangle.Right - imgSize.Width;
-            }
-            else if (backgroundPosition.IndexOf("0", StringComparison.OrdinalIgnoreCase) < 0)
-            {
-                left = (rectangle.Left + (rectangle.Width - imgSize.Width) / 2);
+                case "left": break;
+                case "right": left = rectangle.Right - imgSize.Width; break;
+                case "center": left += (rectangle.Width - imgSize.Width) / 2; break;
+                default: left += CssValueParser.ParseLength(lr_str, rectangle.Width, box); break;
             }
 
-            double top = rectangle.Top;
-            if (backgroundPosition.IndexOf("top", StringComparison.OrdinalIgnoreCase) > -1)
+            switch (tb_str)
             {
-                top = rectangle.Top;
-            }
-            else if (backgroundPosition.IndexOf("bottom", StringComparison.OrdinalIgnoreCase) > -1)
-            {
-                top = rectangle.Bottom - imgSize.Height;
-            }
-            else if (backgroundPosition.IndexOf("0", StringComparison.OrdinalIgnoreCase) < 0)
-            {
-                top = (rectangle.Top + (rectangle.Height - imgSize.Height) / 2);
+                case "top": break;
+                case "bottom": top = rectangle.Bottom - imgSize.Height; break;
+                case "center": top += (rectangle.Height - imgSize.Height) / 2; break;
+                default: top += CssValueParser.ParseLength(tb_str, rectangle.Height, box); break;
             }
 
             return new RPoint(left, top);

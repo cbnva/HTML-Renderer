@@ -25,6 +25,15 @@ namespace TheArtOfDev.HtmlRenderer.Core
             get { return _style; }
         }
 
+
+
+        public string this[string attribute]
+        {
+            get { return _element.GetAttribute(attribute); }
+            //set {_element.set , value); }
+        }
+
+
         public string innerHTML
         {
             get { return ""; }

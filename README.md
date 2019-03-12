@@ -1,11 +1,10 @@
 Changes from original repo
 =============
-
-* Breaking changes
-    * Rewritten `BackgroundImageDrawHandler`: In adapters you needs to remake `RGraphics.GetTextureBrush()` - `dstRect` is not `image` size, that can be gotted from `image`. This is rectangle which needs to be filled with `image` from `dstRect.Location` with `dstRect.Size` multiple to `image` size.  
-* Possible breaking changes
-    *  `border-raduis` + `background-image` now calls `RGraphics.DrawPath(RBrush brush, RGraphicsPath path)` with brush from `RGraphics.GetTextureBrush()`
-* CSS
+* Rewritten `BackgroundImageDrawHandler`:
+    * **Breaking changes**:  In adapters you needs to remake `RGraphics.GetTextureBrush()` - `dstRect` now not `image` size, that can be gotted from `image`. This is rectangle which needs to be filled with `image` from `dstRect.Location` with `dstRect.Size` multiple to `image` size. 
+    * `background-image` + `border-radius` now calls `RGraphics.DrawPath(RBrush brush, RGraphicsPath path)` with brush from `RGraphics.GetTextureBrush()`
+    * `background-position` works as should.
+* CSS renames:
     * `corner-radius, corner-nw-radius, corner-ne-radius, corner-se-radius, corner-sw-radius` renamed to `border-radius, border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius`
     
 
@@ -15,7 +14,7 @@ Changes from original repo
 
 
 
-HTML Renderer [![Build status](https://ci.appveyor.com/api/projects/status/cm8xpf8ebt3hyi3e)](https://ci.appveyor.com/project/ArthurHub/html-renderer)
+HTML Renderer
 =============
 
 ## Help Wanted
