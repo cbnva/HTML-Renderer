@@ -128,12 +128,18 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
                     return cssBox.Left;
                 case "top":
                     return cssBox.Top;
+                case "min-width":
+                    return cssBox.MinWidth;
                 case "width":
                     return cssBox.Width;
                 case "max-width":
                     return cssBox.MaxWidth;
+                case "min-height":
+                    return cssBox.MinHeight;
                 case "height":
                     return cssBox.Height;
+                case "max-height":
+                    return cssBox.MaxHeight;
                 case "background-color":
                     return cssBox.BackgroundColor;
                 case "background-image":
@@ -303,14 +309,23 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
                 case "top":
                     cssBox.Top = value;
                     break;
+                case "min-width":
+                    cssBox.MinWidth = value;
+                    break;
                 case "width":
                     cssBox.Width = value;
                     break;
                 case "max-width":
                     cssBox.MaxWidth = value;
                     break;
+                case "min-height":
+                    cssBox.MinHeight = value;
+                    break;
                 case "height":
                     cssBox.Height = value;
+                    break;
+                case "max-height":
+                    cssBox.MaxHeight = value;
                     break;
                 case "background-color":
                     cssBox.BackgroundColor = value;

@@ -68,7 +68,6 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         private string _fontVariant = "normal";
         private string _fontWeight = "normal";
         private string _float = "none";
-        private string _height = "auto";
         private string _marginBottom = "0";
         private string _marginLeft = "0";
         private string _marginRight = "0";
@@ -92,8 +91,12 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         private string _top = "auto";
         private string _position = "static";
         private string _verticalAlign = "baseline";
+        private string _minWidth = "0";
         private string _width = "auto";
         private string _maxWidth = "none";
+        private string _minHeight = "0";
+        private string _height = "auto";
+        private string _maxHeight = "none";
         private string _wordSpacing = "normal";
         private string _wordBreak = "normal";
         private string _whiteSpace = "normal";
@@ -426,7 +429,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         public string Top
         {
             get { return _top; }
-            set {
+            set
+            {
                 _top = value;
 
                 if (Position == CssConstants.Fixed)
@@ -437,6 +441,11 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
             }
         }
 
+        public string MinWidth
+        {
+            get { return _minWidth; }
+            set { _minWidth = value; }
+        }
         public string Width
         {
             get { return _width; }
@@ -449,11 +458,25 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
             set { _maxWidth = value; }
         }
 
+
+
+        public string MinHeight
+        {
+            get { return _minHeight; }
+            set { _minHeight = value; }
+        }
         public string Height
         {
             get { return _height; }
             set { _height = value; }
         }
+
+        public string MaxHeight
+        {
+            get { return _maxHeight; }
+            set { _maxHeight = value; }
+        }
+
 
         public string BackgroundColor
         {
@@ -686,7 +709,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         /// </summary>
         public RPoint Location
         {
-            get {
+            get
+            {
                 if (_location.IsEmpty && Position == CssConstants.Fixed)
                 {
                     var left = Left;
@@ -696,7 +720,8 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                 }
                 return _location;
             }
-            set {
+            set
+            {
                 _location = value;
             }
         }
@@ -1541,7 +1566,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                     _cornerRadius = p._cornerRadius;
                     _display = p._display;
                     _float = p._float;
-                    _height = p._height;
+
                     _marginBottom = p._marginBottom;
                     _marginLeft = p._marginLeft;
                     _marginRight = p._marginRight;
@@ -1557,6 +1582,10 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                     _textDecoration = p._textDecoration;
                     _top = p._top;
                     _position = p._position;
+                    _minHeight = p._minHeight;
+                    _height = p._height;
+                    _maxHeight = p._maxHeight;
+                    _minWidth = p._minWidth;
                     _width = p._width;
                     _maxWidth = p._maxWidth;
                     _wordSpacing = p._wordSpacing;

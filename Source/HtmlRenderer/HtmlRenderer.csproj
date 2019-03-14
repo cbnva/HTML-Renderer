@@ -52,6 +52,7 @@
     <Compile Include="Core\DOMStyle.cs" />
     <Compile Include="Core\CssDefaults.cs" />
     <Compile Include="Core\Dom\CssBox.cs" />
+    <Compile Include="Core\Dom\CssBoxTable.cs" />
     <Compile Include="Core\Dom\CssBoxFrame.cs" />
     <Compile Include="Core\Dom\CssBoxHr.cs" />
     <Compile Include="Core\Dom\CssBoxImage.cs" />

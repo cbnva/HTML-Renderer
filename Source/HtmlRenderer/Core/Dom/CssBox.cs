@@ -357,21 +357,18 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
         {
             ArgChecker.AssertArgNotNull(tag, "tag");
 
-            if (tag.Name == HtmlConstants.Img)
+            switch (tag.Name)
             {
-                return new CssBoxImage(parent, tag);
-            }
-            else if (tag.Name == HtmlConstants.Iframe)
-            {
-                return new CssBoxFrame(parent, tag);
-            }
-            else if (tag.Name == HtmlConstants.Hr)
-            {
-                return new CssBoxHr(parent, tag);
-            }
-            else
-            {
-                return new CssBox(parent, tag);
+                case HtmlConstants.Img:
+                    return new CssBoxImage(parent, tag);
+                case HtmlConstants.Table:
+                    return new CssBoxTable(parent, tag);
+                case HtmlConstants.Iframe:
+                    return new CssBoxFrame(parent, tag);
+                case HtmlConstants.Hr:
+                    return new CssBoxHr(parent, tag);
+                default:
+                    return new CssBox(parent, tag);
             }
         }
 
