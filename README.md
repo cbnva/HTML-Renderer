@@ -1,5 +1,6 @@
 Changes from original repo
 =============
+
 * Rewritten `BackgroundImageDrawHandler`:
     * **Breaking changes**:  In adapters you needs to remake `RGraphics.GetTextureBrush()` - `dstRect` now not `image` size, that can be gotted from `image`. This is rectangle which needs to be filled with `image` from `dstRect.Location` with `dstRect.Size` multiple to `image` size. 
     * `background-image` + `border-radius` now calls `RGraphics.DrawPath(RBrush brush, RGraphicsPath path)` with brush from `RGraphics.GetTextureBrush()`
@@ -7,13 +8,13 @@ Changes from original repo
 * CSS renames:
     * `corner-radius, corner-nw-radius, corner-ne-radius, corner-se-radius, corner-sw-radius` renamed to `border-radius, border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius`
     
-
-
-
-
-
-
-
+In Progress:
+   * respect height & width, especially for "fullscreen" div (widht:100%,height:100%) 
+   * CssBoxTable - replace for CssLayoutEngineTable with working complex colspan & rowspan 
+   * add "Min/Max+Height/Width" css property - currently used in CssBoxTable
+   * DOMDocument + DOMElement + DOMStyle - wrappers for DHTML-like operations.
+   * `:hover`
+  
 HTML Renderer
 =============
 
