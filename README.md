@@ -1,6 +1,8 @@
 Changes from original repo
 =============
 
+Primary goal: use HtmlRenderer for creating GUI with HtmlRenderer.SDL2-CS (will be public soon)
+
 * Rewritten `BackgroundImageDrawHandler`:
     * **Breaking changes**:  In adapters you needs to remake `RGraphics.GetTextureBrush()` - `dstRect` now not `image` size, that can be gotted from `image`. This is rectangle which needs to be filled with `image` from `dstRect.Location` with `dstRect.Size` multiple to `image` size. 
     * `background-image` + `border-radius` now calls `RGraphics.DrawPath(RBrush brush, RGraphicsPath path)` with brush from `RGraphics.GetTextureBrush()`
@@ -9,8 +11,8 @@ Changes from original repo
     * `corner-radius, corner-nw-radius, corner-ne-radius, corner-se-radius, corner-sw-radius` renamed to `border-radius, border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius`
     
 In Progress:
-   * respect height & width, especially for "fullscreen" div (widht:100%,height:100%) 
-   * CssBoxTable - replace for CssLayoutEngineTable with working complex colspan & rowspan 
+   * respect height & width, especially for "fullscreen" div (height:100%, width:100%) 
+   * CssBoxTable - replace for CssLayoutEngineTable with working complex colspan & rowspan layout 
    * add "Min/Max+Height/Width" css property - currently used in CssBoxTable
    * DOMDocument + DOMElement + DOMStyle - wrappers for DHTML-like operations.
    * `:hover`
