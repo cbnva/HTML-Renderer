@@ -184,13 +184,13 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
 
             CalcTableSize(g);
             _table = new Table(this);
-            LayoutCells(_table);
+            LayoutCells(g, _table);
 
             //
             //PerformLayoutWithoutTableWH(g, _table);
 
         }
-        private static void LayoutCells(Table table)
+        private static void LayoutCells(RGraphics g, Table table)
         {
             double top = table.tableBox.Location.Y;
             double left = table.tableBox.Location.X;
@@ -211,10 +211,10 @@ namespace TheArtOfDev.HtmlRenderer.Core.Dom
                         double width = 0;
                         for (int xc = 0; xc < colspan; xc++)
                             width += table.cols_limits[col + xc].value;
-
+                        td.PerformLayout(g);
                         td.Location = new RPoint(left, top);
                         td.Size = new RSize(width, height);
-                        //td.PerformLayout(g); //That will automatically set the bottom of the cell
+                        //That will automatically set the bottom of the cell
                     }
                     left += table.cols_limits[col].value;
                 }

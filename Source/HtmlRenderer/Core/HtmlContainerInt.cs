@@ -784,6 +784,7 @@ namespace TheArtOfDev.HtmlRenderer.Core
         /// <param name="location">the location of the mouse</param>
         public void HandleMouseMove(RControl parent, RPoint location)
         {
+
             ArgChecker.AssertArgNotNull(parent, "parent");
 
             try
@@ -792,26 +793,26 @@ namespace TheArtOfDev.HtmlRenderer.Core
                 if (_selectionHandler != null && IsMouseInContainer(location))
                     _selectionHandler.HandleMouseMove(parent, loc);
 
-                /*
-                if( _hoverBoxes != null )
+                if (_hoverBoxes != null)
                 {
                     bool refresh = false;
-                    foreach(var hoverBox in _hoverBoxes)
+                    foreach (var hoverBox in _hoverBoxes)
                     {
-                        foreach(var rect in hoverBox.Item1.Rectangles.Values)
+                        foreach (var rect in hoverBox.CssBox.Rectangles.Values)
                         {
-                            if( rect.Contains(loc) )
+                            if (rect.Contains(loc))
                             {
-                                //hoverBox.Item1.Color = "gold";
+                                //Console.WriteLine("" + hoverBox.CssBlock.Class);
+                                hoverBox.CssBox.Color = "red";
                                 refresh = true;
                             }
                         }
                     }
 
-                    if(refresh)
+                    if (refresh)
                         RequestRefresh(true);
                 }
-                 */
+
             }
             catch (Exception ex)
             {
