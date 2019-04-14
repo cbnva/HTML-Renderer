@@ -1,7 +1,7 @@
 Changes from original repo
 =============
 
-Primary goal: use HtmlRenderer for creating GUI with HtmlRenderer.SDL2-CS (will be public soon)
+Primary goal: use HtmlRenderer for creating GUI with [HtmlRenderer.SDL2-CS](https://github.com/ru-ace/HtmlRenderer.SDL2-CS)
 
 * Rewritten `BackgroundImageDrawHandler`:
     * **Breaking changes**:  In adapters you needs to remake `RGraphics.GetTextureBrush()` - `dstRect` now not `image` size, that can be gotted from `image`. This is rectangle which needs to be filled with `image` from `dstRect.Location` with `dstRect.Size` multiple to `image` size. 
